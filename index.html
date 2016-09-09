@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>canvas-animate</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas-bag" width="500" height="500" style="border:1px solid #ccc;"></canvas>
+    <canvas id="canvas" width="500" height="500" style="border:1px solid #ccc; position:absolute"></canvas>
+</body>
+<script>
+    function draw_background(){
+        var canvas=document.getElementById('canvas');
+        if(canvas === null){
+            return false;
+        }
+        var context=canvas.getContext('2d');
+        context.save();
+        //中间两个大圆圈
+        context.fillStyle = 'rgba(226,228,235,1)';
+        context.beginPath();
+        context.arc(250,250,70,0,Math.PI*2,false);
+        context.closePath();
+        context.fill();
+        context.fillStyle = 'rgba(42,52,102,1)';
+        context.beginPath();
+        context.arc(250,250,50,0,Math.PI*2,false);
+        context.closePath();
+        context.fill();
+        //web全栈
+        context.restore();
+        context.fillStyle = "white";
+        context.font = "20px 楷体";
+        context.textBaseline = 'middle';
+        context.textAlign = "center";
+        var txt="web全栈";
+        var length=context.measureText(txt);
+        context.fillText(txt, 250, 250);
+        //三个园圈虚线
+        context.translate(250,250);
+        context.strokeStyle = "green";
+        context.lineWidth=2;
+        context.beginPath();
+        context.setLineDash([5]);
+        context.arc(0,0,140,0,2*Math.PI,false);
+        context.stroke();
+//        context.lineCap="round";
+//        for(var i=0;i<80;i++){
+//            context.beginPath();
+//            context.moveTo(140,0);
+//            context.lineTo(139,3);
+//            context.stroke();
+//            context.rotate(Math.PI/40);
+//        }
+		context.strokeStyle = "#ccc";
+		context.beginPath();
+		context.setLineDash([5]);
+		context.arc(0,0,150,0,2*Math.PI,false);
+		context.stroke();
+        context.beginPath();
+        context.setLineDash([5]);
+        context.arc(0,0,220,0,2*Math.PI,false);
+        context.stroke();
+
+    }
+    draw_background();
+</script>
+</html>
